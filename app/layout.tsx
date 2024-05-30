@@ -8,13 +8,6 @@ import ScrollToTop from "@/components/ScrollToTop";
 import { useEffect, useState } from "react";
 import PreLoader from "@/components/Common/PreLoader";
 
-// const inter = Inter({ subsets: ["latin"] });
-
-// export const metadata: Metadata = {
-//   title: "ChessEarn",
-//   description: "RealTime Chess money website",
-// };
-
 export default function RootLayout({
   children,
 }: Readonly<{
