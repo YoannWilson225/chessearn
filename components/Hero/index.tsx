@@ -23,7 +23,7 @@ const Hero = () => {
                   <div className="">
                     <>
                       <Link
-                        href="/signup"
+                        href="/sign-up"
                         className={`px-6 py-3 ml-5 w-[169px] h-[69px] rounded-[20px] border dark:border-white border-[#1B1B1B]`}
                       >
                         Register

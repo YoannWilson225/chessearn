@@ -103,34 +103,6 @@ const Header = () => {
             </div>
             <div className="flex w-full items-center justify-between px-4">
               <div>
-                {/* <button
-                  onClick={navbarToggleHandler}
-                  id="navbarToggler"
-                  aria-label="Mobile Menu"
-                  className="absolute right-4 top-1/2 block -translate-y-1/2 rounded-lg px-3 py-[6px] ring-primary focus:ring-2 lg:hidden"
-                >
-                  <span
-                    className={`relative my-1.5 block h-0.5 w-[30px] transition-all duration-300 ${navbarOpen ? " top-[7px] rotate-45" : " "
-                      } ${pathUrl !== "/" && ""} ${pathUrl === "/" && sticky
-                        ? ""
-                        : ""
-                      }`}
-                  />
-                  <span
-                    className={`relative my-1.5 block h-0.5 w-[30px] transition-all duration-300 ${navbarOpen ? "opacity-0 " : " "
-                      } ${pathUrl !== "/" && ""} ${pathUrl === "/" && sticky
-                        ? ""
-                        : ""
-                      }`}
-                  />
-                  <span
-                    className={`relative my-1.5 block h-0.5 w-[30px] transition-all duration-300 ${navbarOpen ? " top-[-8px] -rotate-45" : " "
-                      } ${pathUrl !== "/" && ""} ${pathUrl === "/" && sticky
-                        ? ""
-                        : ""
-                      }`}
-                  />
-                </button> */}
                 <nav
                   id="navbarCollapse"
                   className={`navbar absolute right-0 z-30 w-[250px] rounded border-[.5px] border-body-color/50 px-6 py-4 duration-100 dark:border-body-color/20 dark:bg-dark-2 lg:visible lg:static lg:w-auto lg:border-none lg:!bg-transparent lg:p-0 lg:opacity-100 lg:dark:bg-transparent ${navbarOpen
@@ -173,13 +145,13 @@ const Header = () => {
                   {pathUrl !== "/" ? (
                     <>
                       <Link
-                        href="/signin"
+                        href="/sign-in"
                         className="px-7 py-3 w-[169px] h-[69px] rounded-[20px] border border-white"
                       >
                         Login
                       </Link>
                       <Link
-                        href="/signup"
+                        href="/sign-up"
                         className="px-6 py-3 w-[169px] h-[69px] rounded-[20px] border border-white"
                       >
                         Register
@@ -188,13 +160,13 @@ const Header = () => {
                   ) : (
                     <>
                       <Link
-                        href="/signin"
+                        href="/sign-in"
                         className={`px-6 py-3 w-[169px] h-[69px] rounded-[20px] border dark:border-white border-[#1B1B1B]`}
                       >
                         Login
                       </Link>
                       <Link
-                        href="/signup"
+                        href="/sign-up"
                         className={`px-6 py-3 ml-5 w-[169px] h-[69px] rounded-[20px] border dark:border-white border-[#1B1B1B]`}
                       >
                         Register
@@ -215,14 +187,14 @@ const Header = () => {
                     {pathUrl !== "/" || sticky ? (
                       <button
                         onClick={() => signOut()}
-                        className="signUpBtn rounded-lg bg-primary bg-opacity-100 px-6 py-3 text-base font-medium text-white duration-300 ease-in-out hover:bg-opacity-20 hover:text-dark"
+                        className="sign-UpBtn rounded-lg bg-primary bg-opacity-100 px-6 py-3 text-base font-medium text-white duration-300 ease-in-out hover:bg-opacity-20 hover:text-dark"
                       >
                         Sign Out
                       </button>
                     ) : (
                       <button
                         onClick={() => signOut()}
-                        className="signUpBtn rounded-lg  bg-opacity-20 px-6 py-3 text-base font-medium text-white duration-300 ease-in-out hover:bg-opacity-100 hover:text-dark"
+                        className="sign-UpBtn rounded-lg  bg-opacity-20 px-6 py-3 text-base font-medium text-white duration-300 ease-in-out hover:bg-opacity-100 hover:text-dark"
                       >
                         Sign Out
                       </button>
@@ -233,13 +205,13 @@ const Header = () => {
                     {pathUrl !== "/" ? (
                       <>
                         <Link
-                          href="/signin"
+                          href="/sign-in"
                           className="px-7 py-3 text-base font-medium text-dark hover:opacity-70 dark:text-white"
                         >
                           Sign In
                         </Link>
                         <Link
-                          href="/signup"
+                          href="/sign-up"
                           className="rounded-lg bg-primary px-6 py-3 text-base font-medium text-white duration-300 ease-in-out hover:bg-primary/90 dark:/10 dark:hover:/20"
                         >
                           Sign Up
@@ -248,7 +220,7 @@ const Header = () => {
                     ) : (
                       <>
                         <Link
-                          href="/signin"
+                          href="/sign-in"
                           className={`px-7 py-3 text-base font-medium hover:opacity-70 ${
                             sticky ? "text-dark dark:text-white" : "text-white"
                           }`}
@@ -256,7 +228,7 @@ const Header = () => {
                           Sign In
                         </Link>
                         <Link
-                          href="/signup"
+                          href="/sign-up"
                           className={`rounded-lg px-6 py-3 text-base font-medium text-white duration-300 ease-in-out ${
                             sticky
                               ? "bg-primary hover:bg-primary/90 dark:/10 dark:hover:/20"
