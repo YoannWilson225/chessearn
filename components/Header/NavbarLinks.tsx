@@ -118,7 +118,7 @@ const menuData: Menu[] = [
       {
         id: 62,
         title: "Teams",
-        desc: "Manage your teams and participate in activities between members",
+        desc: "Manage your teams and participate in activities between members👨‍💻",
         path: "/",
         newTab: false,
       },

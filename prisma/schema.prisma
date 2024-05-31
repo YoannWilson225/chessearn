@@ -1,0 +1,178 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                       String                  @id @default(uuid())
+  username                 String                  @unique
+  password                 String
+  email                    String                  @unique
+  accounts                 Account[]
+  sessions                 Session[]
+  createdAt                DateTime                @default(now())
+  elo                      Int
+  isPremium                Boolean                 @default(false)
+  balance                  Float                   @default(0.0)
+  friends1                 Friend[]                @relation("FriendsUser1")
+  friends2                 Friend[]                @relation("FriendsUser2")
+  gamesAsPlayer1           Game[]                  @relation("Player1")
+  gamesAsPlayer2           Game[]                  @relation("Player2")
+  gamesWon                 Game[]                  @relation("Winner")
+  transactions             Transaction[]
+  subscriptions            Subscription[]
+  organizedTournaments     Tournament[]            @relation("Organizer")
+  tournamentParticipations TournamentParticipant[]
+  createdTeams             Team[]                  @relation("CreatedTeams")
+  teamMemberships          TeamMember[]
+  challengesAsChallenger   Challenge[]             @relation("Challenger")
+  challengesAsChallengee   Challenge[]             @relation("Challengee")
+  tournamentResults        TournamentResult[]
+}
+
+model Account {
+  id                String  @id @default(uuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(uuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model VerificationToken {
+  id         String   @id @default(uuid())
+  identifier String
+  token      String
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+model Friend {
+  id      String @id @default(uuid())
+  user1Id String
+  user2Id String
+  user1   User   @relation("FriendsUser1", fields: [user1Id], references: [id])
+  user2   User   @relation("FriendsUser2", fields: [user2Id], references: [id])
+}
+
+model Game {
+  id          String    @id @default(uuid())
+  player1Id   String
+  player2Id   String
+  player1     User      @relation("Player1", fields: [player1Id], references: [id])
+  player2     User      @relation("Player2", fields: [player2Id], references: [id])
+  gameMode    String
+  timeControl String
+  winnerId    String?
+  winner      User?     @relation("Winner", fields: [winnerId], references: [id])
+  startTime   DateTime  @default(now())
+  endTime     DateTime?
+  betAmount   Float
+}
+
+model Transaction {
+  id              String   @id @default(uuid())
+  userId          String
+  user            User     @relation(fields: [userId], references: [id])
+  amount          Float
+  transactionType String
+  transactionDate DateTime @default(now())
+}
+
+model Subscription {
+  id        String   @id @default(uuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  startDate DateTime @default(now())
+  endDate   DateTime
+}
+
+model Tournament {
+  id             String                  @id @default(uuid())
+  organizerId    String
+  organizer      User                    @relation("Organizer", fields: [organizerId], references: [id])
+  gameMode       String
+  timeControl    String
+  tournamentType String
+  entryFee       Float
+  startTime      DateTime
+  endTime        DateTime
+  participants   TournamentParticipant[]
+  results        TournamentResult[]
+}
+
+model TournamentParticipant {
+  id           String     @id @default(uuid())
+  tournamentId String
+  userId       String
+  tournament   Tournament @relation(fields: [tournamentId], references: [id])
+  user         User       @relation(fields: [userId], references: [id])
+}
+
+model Team {
+  id        String       @id @default(uuid())
+  teamName  String       @unique
+  creatorId String
+  creator   User         @relation("CreatedTeams", fields: [creatorId], references: [id])
+  createdAt DateTime     @default(now())
+  members   TeamMember[]
+}
+
+model TeamMember {
+  id     String @id @default(uuid())
+  teamId String
+  userId String
+  team   Team   @relation(fields: [teamId], references: [id])
+  user   User   @relation(fields: [userId], references: [id])
+}
+
+model Challenge {
+  id           String @id @default(uuid())
+  challengerId String
+  challengeeId String
+  challenger   User   @relation("Challenger", fields: [challengerId], references: [id])
+  challengee   User   @relation("Challengee", fields: [challengeeId], references: [id])
+  gameMode     String
+  timeControl  String
+  betAmount    Float
+  status       String @default("Pending")
+}
+
+model TournamentResult {
+  id           String     @id @default(uuid())
+  tournamentId String
+  userId       String
+  position     Int
+  prize        Float
+  tournament   Tournament @relation(fields: [tournamentId], references: [id])
+  user         User       @relation(fields: [userId], references: [id])
+}
