@@ -43,7 +43,7 @@ const SignUp = () => {
 
   return (
     <section className="dark:bg-dark lg:py-[90px]">
-      <div className="container">
+      <div className="pt-14 container">
         <div className="-mx-4 flex flex-wrap">
           <div className="w-full px-4">
           <div
