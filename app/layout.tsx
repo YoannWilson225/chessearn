@@ -7,6 +7,7 @@ import Header from "@/components/Header";
 import ScrollToTop from "@/components/ScrollToTop";
 import { useEffect, useState } from "react";
 import PreLoader from "@/components/Common/PreLoader";
+import { NextAuthProvider } from "./components/Providers";
 
 export default function RootLayout({
   children,
@@ -22,19 +23,20 @@ export default function RootLayout({
   return (
     <html suppressHydrationWarning={true} className="!scroll-smooth" lang="en">
       <body>
-        {loading ? (<PreLoader />) : (
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="dark"
-            enableSystem
-            disableTransitionOnChange
-          >
-            <Header />
-            {children}
-            <ScrollToTop />
-          </ThemeProvider>
-        )}
-
+        <NextAuthProvider>
+          {loading ? (<PreLoader />) : (
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="dark"
+              enableSystem
+              disableTransitionOnChange
+            >
+              <Header />
+              {children}
+              <ScrollToTop />
+            </ThemeProvider>
+          )}
+        </NextAuthProvider>
       </body>
     </html>
   );
