@@ -1,5 +1,5 @@
 "use client";
-// import { signOut, useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import { useTheme } from "next-themes";
 import Image from "next/image";
 import Link from "next/link";
@@ -8,12 +8,14 @@ import { useEffect, useState } from "react";
 
 import Burger from "./Burger";
 import { NavigationMenuDemo } from "./NavbarLinks";
+// import { authOptions } from "@/app/lib/auth";
 // import './style.css'
 
 const Header = () => {
-  // const { data: session } = useSession();
+  const { data: session } = useSession();
 
-  const pathUrl = usePathname();
+  console.log('session', session);
+
   // Navbar toggle
   const [navbarOpen, setNavbarOpen] = useState(false);
   // const navbarToggleHandler = () => {
@@ -35,21 +37,36 @@ const Header = () => {
 
   // submenu handler
   const [openIndex, setOpenIndex] = useState(-1);
-  const handleSubmenu = (index: any) => {
-    if (openIndex === index) {
-      setOpenIndex(-1);
-    } else {
-      setOpenIndex(index);
-    }
-  };
+  // const handleSubmenu = (index: any) => {
+  //   if (openIndex === index) {
+  //     setOpenIndex(-1);
+  //   } else {
+  //     setOpenIndex(index);
+  //   }
+  // };
 
   const { theme, setTheme } = useTheme();
+
+  // const [session, setSession] = useState(null);
+
+  // console.log(session);
+
+  // useEffect(() => {
+  //   const fetchSession = async () => {
+  //     const session: any = await getServerSession(authOptions);
+  //     setSession(session);
+  //     console.log(session);
+
+  //   };
+
+  //   fetchSession();
+  // }, []);
 
   return (
     <>
       <header
-        className={`ud-header left-0 top-0 z-40 flex w-full items-center ${sticky
-          ? "shadow-nav fixed z-[999] border-b border-stroke backdrop-blur-[5px] dark:border-dark-5/20 dark:bg-dark/10"
+        className={`ud-header left-0 top-0 z-40 pb-4 flex w-full items-center ${sticky
+          ? "shadow-nav fixed z-[999] border-b-[0.1px] border-b-[#212121] dark:border-b-[white]  border-stroke backdrop-blur-[5px] dark:border-dark-5/20 dark:bg-dark/10"
           : "absolute bg-transparent"
           }`}
       >
@@ -60,45 +77,25 @@ const Header = () => {
               <Link
                 href="/"
                 className={`navbar-logo block w-full`}
-              >
-                {pathUrl !== "/" ? (
-                  <>
-                    <Image
-                      src={`/images/logo/logo.svg`}
-                      alt="logo"
-                      width={240}
-                      height={30}
-                      className="header-logo w-full dark:hidden"
-                    />
-                    <Image
-                      src={`/images/logo/logo-white.svg`}
-                      alt="logo"
-                      width={240}
-                      height={30}
-                      className="header-logo hidden w-full dark:block"
-                    />
-                  </>
-                ) : (
-                  <>
-                    <Image
-                      src={`${sticky
-                        ? "/images/logo/logo.svg"
-                        : "/images/logo/logo.svg"
-                        }`}
-                      alt="logo"
-                      width={140}
-                      height={30}
-                      className="header-logo w-full dark:hidden"
-                    />
-                    <Image
-                      src={"/images/logo/logo-white.svg"}
-                      alt="logo"
-                      width={140}
-                      height={30}
-                      className="header-logo hidden w-full dark:block"
-                    />
-                  </>
-                )}
+              ><>
+                  <Image
+                    src={`${sticky
+                      ? "/images/logo/logo.svg"
+                      : "/images/logo/logo.svg"
+                      }`}
+                    alt="logo"
+                    width={140}
+                    height={30}
+                    className="header-logo w-full dark:hidden"
+                  />
+                  <Image
+                    src={"/images/logo/logo-white.svg"}
+                    alt="logo"
+                    width={140}
+                    height={30}
+                    className="header-logo hidden w-full dark:block"
+                  />
+                </>
               </Link>
             </div>
             <div className="flex w-full items-center justify-between px-4">
@@ -132,7 +129,7 @@ const Header = () => {
 
                     <svg
                       viewBox="0 0 23 23"
-                      className={`h-[30px] w-[30px] fill-current dark:hidden ${!sticky && pathUrl === "/" && ""
+                      className={`h-[30px] w-[30px] fill-current dark:hidden ${!sticky && ""
                         }`}
                     >
                       <g clipPath="url(#clip0_40_125)">
@@ -141,106 +138,38 @@ const Header = () => {
                     </svg>
                   </span>
                 </button>
+                {/* {session ? */}
                 <div className="pt-5">
-                  {pathUrl !== "/" ? (
-                    <>
-                      <Link
-                        href="/sign-in"
-                        className="px-7 py-3 w-[169px] h-[69px] rounded-[20px] border border-white"
-                      >
-                        Login
-                      </Link>
-                      <Link
-                        href="/sign-up"
-                        className="px-6 py-3 w-[169px] h-[69px] rounded-[20px] border border-white"
-                      >
-                        Register
-                      </Link>
-                    </>
-                  ) : (
-                    <>
-                      <Link
-                        href="/sign-in"
-                        className={`px-6 py-3 w-[169px] h-[69px] rounded-[20px] border dark:border-white border-[#1B1B1B]`}
-                      >
-                        Login
-                      </Link>
-                      <Link
-                        href="/sign-up"
-                        className={`px-6 py-3 ml-5 w-[169px] h-[69px] rounded-[20px] border dark:border-white border-[#1B1B1B]`}
-                      >
-                        Register
-                      </Link>
-                    </>
-                  )}
+                  <Link
+                    href="/"
+                    className={`px-6 py-3 w-[169px] h-[69px] rounded-[20px] border dark:border-white border-[#1B1B1B]`}
+                  >
+                    0,0 $
+                  </Link>
+                  <Link
+                    href="/"
+                    className={`px-6 py-3 ml-5 w-[169px] h-[69px] rounded-[20px] text-[black] bg-[#F9CE00]`}
+                  >
+                    {/* <svg viewBox="0 -0.5 25 25" fill="black" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M11.75 9.874C11.75 10.2882 12.0858 10.624 12.5 10.624C12.9142 10.624 13.25 10.2882 13.25 9.874H11.75ZM13.25 4C13.25 3.58579 12.9142 3.25 12.5 3.25C12.0858 3.25 11.75 3.58579 11.75 4H13.25ZM9.81082 6.66156C10.1878 6.48991 10.3542 6.04515 10.1826 5.66818C10.0109 5.29121 9.56615 5.12478 9.18918 5.29644L9.81082 6.66156ZM5.5 12.16L4.7499 12.1561L4.75005 12.1687L5.5 12.16ZM12.5 19L12.5086 18.25C12.5029 18.25 12.4971 18.25 12.4914 18.25L12.5 19ZM19.5 12.16L20.2501 12.1687L20.25 12.1561L19.5 12.16ZM15.8108 5.29644C15.4338 5.12478 14.9891 5.29121 14.8174 5.66818C14.6458 6.04515 14.8122 6.48991 15.1892 6.66156L15.8108 5.29644ZM13.25 9.874V4H11.75V9.874H13.25ZM9.18918 5.29644C6.49843 6.52171 4.7655 9.19951 4.75001 12.1561L6.24999 12.1639C6.26242 9.79237 7.65246 7.6444 9.81082 6.66156L9.18918 5.29644ZM4.75005 12.1687C4.79935 16.4046 8.27278 19.7986 12.5086 19.75L12.4914 18.25C9.08384 18.2892 6.28961 15.5588 6.24995 12.1513L4.75005 12.1687ZM12.4914 19.75C16.7272 19.7986 20.2007 16.4046 20.2499 12.1687L18.7501 12.1513C18.7104 15.5588 15.9162 18.2892 12.5086 18.25L12.4914 19.75ZM20.25 12.1561C20.2345 9.19951 18.5016 6.52171 15.8108 5.29644L15.1892 6.66156C17.3475 7.6444 18.7376 9.79237 18.75 12.1639L20.25 12.1561Z" fill="black"></path> </g></svg>  */}
+                    Logout
+                  </Link>
                 </div>
-
-                {/* {session?.user ? (
-                  <>
-                    <p
-                      className={`loginBtn px-7 py-3 text-base font-medium ${
-                        !sticky && pathUrl === "/" ? "text-white" : "text-dark"
-                      }`}
+                {/* : */}
+                {/* <div className="pt-5">
+                    <Link
+                      href="/sign-in"
+                      className={`px-6 py-3 w-[169px] h-[69px] rounded-[20px] border dark:border-white border-[#1B1B1B]`}
                     >
-                      {session?.user?.name}
-                    </p>
-                    {pathUrl !== "/" || sticky ? (
-                      <button
-                        onClick={() => signOut()}
-                        className="sign-UpBtn rounded-lg bg-primary bg-opacity-100 px-6 py-3 text-base font-medium text-white duration-300 ease-in-out hover:bg-opacity-20 hover:text-dark"
-                      >
-                        Sign Out
-                      </button>
-                    ) : (
-                      <button
-                        onClick={() => signOut()}
-                        className="sign-UpBtn rounded-lg  bg-opacity-20 px-6 py-3 text-base font-medium text-white duration-300 ease-in-out hover:bg-opacity-100 hover:text-dark"
-                      >
-                        Sign Out
-                      </button>
-                    )}
-                  </>
-                ) : (
-                  <>
-                    {pathUrl !== "/" ? (
-                      <>
-                        <Link
-                          href="/sign-in"
-                          className="px-7 py-3 text-base font-medium text-dark hover:opacity-70 dark:text-white"
-                        >
-                          Sign In
-                        </Link>
-                        <Link
-                          href="/sign-up"
-                          className="rounded-lg bg-primary px-6 py-3 text-base font-medium text-white duration-300 ease-in-out hover:bg-primary/90 dark:/10 dark:hover:/20"
-                        >
-                          Sign Up
-                        </Link>
-                      </>
-                    ) : (
-                      <>
-                        <Link
-                          href="/sign-in"
-                          className={`px-7 py-3 text-base font-medium hover:opacity-70 ${
-                            sticky ? "text-dark dark:text-white" : "text-white"
-                          }`}
-                        >
-                          Sign In
-                        </Link>
-                        <Link
-                          href="/sign-up"
-                          className={`rounded-lg px-6 py-3 text-base font-medium text-white duration-300 ease-in-out ${
-                            sticky
-                              ? "bg-primary hover:bg-primary/90 dark:/10 dark:hover:/20"
-                              : "/10 hover:/20"
-                          }`}
-                        >
-                          Sign Up
-                        </Link>
-                      </>
-                    )}
-                  </>
-                )} */}
+                      Login
+                    </Link>
+                    <Link
+                      href="/sign-up"
+                      className={`px-6 py-3 ml-5 w-[169px] h-[69px] rounded-[20px] border dark:border-white border-[#1B1B1B]`}
+                    >
+                      Register
+                    </Link>
+                  </div> */}
+                {/* } */}
               </div>
             </div>
           </div>

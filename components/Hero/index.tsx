@@ -12,12 +12,12 @@ const Hero = () => {
             <div className="w-full px-4">
               <div className="mx-auto max-w-[800px] text-center">
                 <Link href="/"
-                  className="hover:text-[#F9CE00] text-2xl">+ Inviter un proche ...</Link>
+                  className="hover:text-[#F9CE00] text-2xl">+ Invite a loved one ...</Link>
                 <h1 className="mb-5 text-6xl leading-tight text-black dark:text-white sm:text-4xl sm:leading-tight md:text-5xl md:leading-tight">
-                  <span className="text-[#F9CE00] font-semibold">$&apos;enrichir</span> tout en <span className="font-semibold">S&apos;amusant ?</span>
+                  <span className="text-[#F9CE00] font-semibold">Get rich</span> while having <span className="font-semibold">fun ?</span>
                 </h1>
                 <p className="mb-12 text-base !leading-relaxed text-body-color dark:text-body-color-dark sm:text-lg md:text-2xl">
-                  C&apos;est possible, créer un <span className="text-[#F9CE00] font-bold">Compte</span> & <span className="text-[#F9CE00] font-bold">Jouer !</span>
+                It&apos;s possible, create an <span className="text-[#F9CE00] font-bold">Account</span> & <span className="text-[#F9CE00] font-bold">Play !</span>
                 </p>
                 <div className="items-center justify-center space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0">
                   <div className="">

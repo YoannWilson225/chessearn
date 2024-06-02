@@ -20,38 +20,11 @@ const Signin = () => {
     checkboxToggle: false,
   });
 
-  // const [isPassword, setIsPassword] = useState(false);
   const [loading, setLoading] = useState(false);
-
-  // const loginUser = (e: any) => {
-  //   e.preventDefault();
-
-  //   setLoading(true);
-  //   signIn("credentials", { ...loginData, redirect: false })
-  //     .then((callback) => {
-  //       if (callback?.error) {
-  //         toast.error(callback?.error);
-  //         console.log(callback?.error);
-  //         setLoading(false);
-  //         return;
-  //       }
-
-  //       if (callback?.ok && !callback?.error) {
-  //         toast.success("Login successful");
-  //         setLoading(false);
-  //         router.push("/");
-  //       }
-  //     })
-  //     .catch((err) => {
-  //       setLoading(false);
-  //       console.log(err.message);
-  //       toast.error(err.message);
-  //     });
-  // };
 
   return (
     <section className="dark:bg-dark lg:py-20">
-      <div className="pt-14 container">
+      <div className="pt-5 container">
         <div className="-mx-4 flex flex-wrap">
           <div className="w-full px-4">
             <div
@@ -77,14 +50,6 @@ const Signin = () => {
                 </Link>
               </div>
 
-
-              {/* 
-              <SwitchOption
-                isPassword={isPassword}
-                setIsPassword={setIsPassword}
-              /> */}
-
-              {/* {isPassword ? ( */}
               <form onSubmit={(e) => e.preventDefault()}>
                 <div className="mb-[22px]">
                   <input
@@ -116,27 +81,15 @@ const Signin = () => {
                   </button>
                 </div>
                 <SocialSignIn />
-
-                {/* <span className="z-1 relative my-8 block text-center">
-                  <span className="-z-1 absolute left-0 top-1/2 block h-px w-full bg-stroke"></span>
-                  <span className="text-body-secondary relative z-10 inline-block  px-3 text-base">
-                    OR
-                  </span>
-                </span> */}
-
               </form>
-              {/* ) : (
-                <MagicLink />
-              )} */}
-
               <Link
                 href="/forgot-password"
-                className="mb-2 inline-block text-base text-dark text-[#F9CE00] hover:underline"
+                className="mb-2 inline-block font-semibold text-[#F9CE00] hover:underline"
               >
                 Forget Password?
               </Link>
               <p className="text-body-secondary text-base">
-                You do not have an account ? <Link href="/sign-up" className="text-[#F9CE00] hover:underline">
+                You do not have an account ? <Link href="/sign-up" className="font-semibold text-[#F9CE00] hover:underline">
                   Register !
                 </Link>
               </p>

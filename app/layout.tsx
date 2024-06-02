@@ -8,6 +8,8 @@ import ScrollToTop from "@/components/ScrollToTop";
 import { useEffect, useState } from "react";
 import PreLoader from "@/components/Common/PreLoader";
 import { NextAuthProvider } from "./components/Providers";
+import NextTopLoader from 'nextjs-toploader';
+import { NextUIProvider } from "@nextui-org/react";
 
 export default function RootLayout({
   children,
@@ -31,9 +33,23 @@ export default function RootLayout({
               enableSystem
               disableTransitionOnChange
             >
-              <Header />
-              {children}
-              <ScrollToTop />
+              <NextUIProvider>
+                <NextTopLoader
+                  color="#F9CE00"
+                  initialPosition={0.08}
+                  crawlSpeed={200}
+                  height={3}
+                  crawl={true}
+                  showSpinner={true}
+                  easing="ease"
+                  speed={200}
+                  shadow="0 0 10px #2299DD,0 0 5px #2299DD"
+                />
+                <Header />
+                {children}
+                <ScrollToTop />
+              </NextUIProvider>
+
             </ThemeProvider>
           )}
         </NextAuthProvider>

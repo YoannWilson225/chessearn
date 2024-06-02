@@ -1,5 +1,7 @@
 import ScrollUp from "@/components/Common/ScrollUp";
+import GamesProgress from "@/components/GamesProgress";
 import Hero from "@/components/Hero";
+import TournamentProgress from "@/components/TournamentProgress";
 import { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Image from "next/image";
@@ -13,7 +15,11 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <><ScrollUp />
-      <Hero /></>
+    <>
+      <ScrollUp />
+      <Hero />
+      <GamesProgress />
+      <TournamentProgress />
+    </>
   );
 }
