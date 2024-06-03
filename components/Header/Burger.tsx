@@ -13,7 +13,7 @@ export default function Burger() {
     }
  
     return (
-        <div className="pr-2">
+        <div className="pr-2 pt-2">
             <button onClick={openLeftNavigation}>
                 <svg width="38" height="54" className='' viewBox="0 0 38 54" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                     <line x1="37.5" y1="2.18557e-08" x2="37.5" y2="54" stroke="currentColor" />

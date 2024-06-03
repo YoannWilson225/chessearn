@@ -3,10 +3,10 @@ import GamesProgress from "@/components/GamesProgress";
 import Hero from "@/components/Hero";
 import TournamentProgress from "@/components/TournamentProgress";
 import { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Poppins } from "next/font/google";
 import Image from "next/image";
 
-const inter = Inter({ subsets: ["latin"] });
+const poppins = Poppins({ subsets: ["latin"], weight:'400'});
 
 export const metadata: Metadata = {
   title: "ChessEarn",
