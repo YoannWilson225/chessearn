@@ -78,7 +78,7 @@ const Header = () => {
               <Burger />
               <Link
                 href="/"
-                className={`navbar-logo block w-full`}
+                className={`pt-1 navbar-logo block w-full`}
               ><>
                   <Image
                     src={`${sticky

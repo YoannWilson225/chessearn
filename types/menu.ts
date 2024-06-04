@@ -13,3 +13,11 @@ export type SubMenu = {
   path?: string;
   newTab: boolean;
 }
+
+export type AccordionDataType = {
+  id: number;
+  title: string;
+  icon: React.FC<React.SVGProps<SVGSVGElement>>;
+  event: () => void;
+};
+

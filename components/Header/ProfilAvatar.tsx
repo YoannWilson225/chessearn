@@ -10,9 +10,8 @@ export default function ProfilAvatar() {
         <div className="flex items-center space-x-4 mr-5">
             <div className="relative">
                 <div className="flex items-center gap-2 cursor-pointer pt-4" onClick={() => setIsOpen(!isOpen)}>
-                    <Badge content="5" color="primary" shape="circle" showOutline={false}>
+                    <Badge content="5" className='bg-[#F9CE00] text-black' shape="circle" showOutline={false}>
                         <Avatar
-                            isBordered
                             radius="full"
                             src="https://github.com/shadcn.png"
                         />
@@ -28,11 +27,10 @@ export default function ProfilAvatar() {
                     leaveFrom="opacity-100"
                     leaveTo="opacity-0"
                 >
-                    <div className="absolute right-0 mt-2 w-[320px] dark:bg-[#292929] bg-white rounded-lg shadow-lg p-4">
+                    <div className="absolute right-0 mt-2 w-[350px] dark:bg-[#292929] bg-white rounded-lg shadow-lg p-4">
                         <div className="flex items-center flex-col">
                             <p className="mt-2 text-sm font-semibold"><span className='text-[#F9CE00]'>GM</span> Yoann_wilson_Cl</p>
                             <Avatar
-                                isBordered
                                 radius="full"
                                 size="lg"
                                 src="https://github.com/shadcn.png"
