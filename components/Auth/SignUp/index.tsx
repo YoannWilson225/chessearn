@@ -5,10 +5,18 @@ import { useRouter } from "next/navigation";
 import SocialSignIn from "../SocialSignIn";
 import { useState } from "react";
 import Loader from "@/components/Common/Loader";
+import { Input } from "@nextui-org/react";
+import { EyeSlashFilledIcon } from "../components/EyeSlashFilledIcon";
+import { EyeFilledIcon } from "../components/EyeFilledIcon";
+import { MailIcon } from "../components/MailIcon";
 
 const SignUp = () => {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
+
+  const [isVisible, setIsVisible] = useState(false);
+
+  const toggleVisibility = () => setIsVisible(!isVisible);
 
   return (
     <section className="dark:bg-dark lg:py-[90px]">
@@ -39,30 +47,48 @@ const SignUp = () => {
               </div>
               <form >
                 <div className="mb-[22px]">
-                  <input
+                  <Input
+                    label="Name"
+                    labelPlacement="outside"
                     type="text"
-                    placeholder="Name"
+                    placeholder="You"
                     name="name"
                     required
-                    className="w-full rounded-md px-5 py-3 dark:bg-white bg-[#D2D2D2] text-base text-dark outline-none transition placeholder:text-dark-6 focus:border-primary focus-visible:shadow-none dark:border-dark-3 dark:text-black dark:focus:border-primary"
+                    className="w-full rounded-md"
                   />
                 </div>
                 <div className="mb-[22px]">
-                  <input
+                  <Input
                     type="email"
-                    placeholder="Email"
-                    name="email"
                     required
-                    className="w-full rounded-md px-5 py-3 dark:bg-white bg-[#D2D2D2] text-base text-dark outline-none transition placeholder:text-dark-6 focus:border-primary focus-visible:shadow-none dark:border-dark-3 dark:text-black dark:focus:border-primary"
+                    // isInvalid={false}
+                    label="Email"
+                    placeholder="you@example.com"
+                    className="pt-5"
+                    labelPlacement="outside"
+                    endContent={
+                      <MailIcon className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />
+                    }
+                    errorMessage="Please enter a valid e-mail"
                   />
                 </div>
                 <div className="mb-[22px]">
-                  <input
-                    type="password"
-                    placeholder="Password"
-                    name="password"
-                    required
-                    className="w-full rounded-md px-5 py-3 dark:bg-white bg-[#D2D2D2] text-base text-dark outline-none transition placeholder:text-dark-6 focus:border-primary focus-visible:shadow-none dark:border-dark-3 dark:text-black dark:focus:border-primary"
+                  <Input
+                    type={isVisible ? "text" : "password"}
+                    label="Password"
+                    labelPlacement="outside"
+                    variant="bordered"
+                    placeholder="Enter your password"
+                    className="pt-2"
+                    endContent={
+                      <button className="focus:outline-none" type="button" onClick={toggleVisibility}>
+                        {isVisible ? (
+                          <EyeSlashFilledIcon className="text-2xl text-default-400 pointer-events-none" />
+                        ) : (
+                          <EyeFilledIcon className="text-2xl text-default-400 pointer-events-none" />
+                        )}
+                      </button>
+                    }
                   />
                 </div>
                 <div className="mb-9">
@@ -82,7 +108,7 @@ const SignUp = () => {
                   Privacy
                 </a>{" "}
                 and{" "}
-                <a href="/#" className="text-primary hover:underline">
+                <a href="/#" className="text-[#F9CE00] font-semibold hover:underline">
                   Policy
                 </a>
               </p>

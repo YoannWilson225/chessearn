@@ -10,6 +10,7 @@ import PreLoader from "@/components/Common/PreLoader";
 import { NextAuthProvider } from "./components/Providers";
 import NextTopLoader from 'nextjs-toploader';
 import { NextUIProvider } from "@nextui-org/react";
+import Footer from "@/components/Footer";
 
 export default function RootLayout({
   children,
@@ -47,6 +48,7 @@ export default function RootLayout({
                 />
                 <Header />
                 {children}
+                <Footer />
                 <ScrollToTop />
               </NextUIProvider>
 
