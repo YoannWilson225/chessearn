@@ -13,7 +13,9 @@ import { Button } from "@nextui-org/react";
 // import { authOptions } from "@/app/lib/auth";
 // import './style.css'
 
+
 const Header = () => {
+  const router = useRouter();
   const { data: session } = useSession();
 
   console.log('session', session);
@@ -140,21 +142,21 @@ const Header = () => {
                     </svg>
                   </span>
                 </button>
-                {session ?
-                  <>
-                    <ProfilAvatar />
-                    <div className="pt-5">
-                      <Button
-                        href="/"
-                        className={`px-6 py-3 rounded-[20px] border font-semi bg-transparent dark:border-white border-[#1B1B1B]`}
-                      >
-                        0,0 $
-                      </Button>
-
-                    </div></>
-
-                  :
+                {/* {session ? */}
+                <>
+                  <ProfilAvatar router={router} />
                   <div className="pt-5">
+                    <Button
+                      href="/"
+                      className={`px-6 py-3 rounded-[20px] border font-semi bg-transparent dark:border-white border-[#1B1B1B]`}
+                    >
+                      0,0 $
+                    </Button>
+
+                  </div></>
+
+                {/* : */}
+                {/* <div className="pt-5">
                     <Link
                       href="/sign-in"
                       className={`px-6 py-3 w-[169px] h-[69px] rounded-[20px] border dark:border-white border-[#1B1B1B]`}
@@ -167,8 +169,8 @@ const Header = () => {
                     >
                       Register
                     </Link>
-                  </div>
-                }
+                  </div> */}
+                {/* } */}
               </div>
             </div>
           </div>

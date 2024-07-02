@@ -20,7 +20,7 @@ const SignUp = () => {
 
   return (
     <section className="dark:bg-dark lg:py-[90px]">
-      <div className="pt-14 container">
+      <div className="pt-5 container">
         <div className="-mx-4 flex flex-wrap">
           <div className="w-full px-4">
             <div
@@ -48,7 +48,7 @@ const SignUp = () => {
               <form >
                 <div className="mb-[22px]">
                   <Input
-                    label="Name"
+                    label="Username"
                     labelPlacement="outside"
                     type="text"
                     placeholder="You"
