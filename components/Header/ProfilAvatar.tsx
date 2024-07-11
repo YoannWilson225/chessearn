@@ -4,8 +4,9 @@ import { Transition } from '@headlessui/react';
 import { Accordion, AccordionItem } from '@nextui-org/react';
 import { AccordionDataType } from '@/types/menu';
 
-export default function ProfilAvatar({ router }: any) {
+export default function ProfilAvatar({ router, session }: any) {
     const [isOpen, setIsOpen] = useState(false);
+    console.log(session.user.image);
 
     return (
         <div className="flex items-center space-x-4 mr-5">
@@ -14,7 +15,7 @@ export default function ProfilAvatar({ router }: any) {
                     <Badge content="5" className='bg-[#F9CE00] text-black' shape="circle" showOutline={false}>
                         <Avatar
                             radius="full"
-                            src="https://github.com/shadcn.png"
+                            src={session?.user.image}
                         />
                     </Badge>
                 </div>
@@ -34,7 +35,7 @@ export default function ProfilAvatar({ router }: any) {
                             <Avatar
                                 radius="full"
                                 size="lg"
-                                src="https://github.com/shadcn.png"
+                                src={session?.user.image}
                                 className='my-3'
                             />
                             <p className='font-semibold text-md'>Bonjour, <span className='text-[#F9CE00]'>GM</span> Yoann_wilson_Cl</p>
@@ -67,7 +68,7 @@ const AccordionProfile = ({ router }: { router: any }) => {
     const [isOpen, setIsOpen] = useState(false);
 
     const handleNavigation = () => {
-        router.push('chat');
+        router.push('discuss');
     };
 
     const accordionData: AccordionDataType[] = [

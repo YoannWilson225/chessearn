@@ -5,7 +5,7 @@ import TournamentProgress from "@/components/TournamentProgress";
 import { Metadata } from "next";
 import { Poppins } from "next/font/google";
 
-const poppins = Poppins({ subsets: ["latin"], weight:'400'});
+const poppins = Poppins({ subsets: ["latin"], weight: '400' });
 
 export const metadata: Metadata = {
   title: "ChessEarn",

@@ -1,11 +1,30 @@
-import React from "react";
-// import { signIn } from "next-auth/react";
+'use client';
+import { Button } from "@nextui-org/react";
+import { signIn } from "next-auth/react";
+import React, { useState } from "react";
+import toast from "react-hot-toast";
+
 
 const SocialSignIn = () => {
+  const [isLoading, setIsLoading] = useState<boolean>(false)
+
+  async function loginWithGoogle() {
+    setIsLoading(true)
+    try {
+      // throw new Error('doesntmatter')
+      await signIn('google')
+    } catch (error) {
+      // display error message to user
+      toast.error('Something went wrong with your login.')
+    } finally {
+      setIsLoading(false)
+    }
+  }
   return (
     <div className="flex pb-5">
-      <button
-        // onClick={() => signIn("google")}
+      <Button
+        isLoading={isLoading}
+        onClick={loginWithGoogle}
         className="flex w-full items-center justify-center gap-2.5 border dark:border-white border-black rounded-lg p-3.5 duration-200 ease-in hover:border-gray-5"
       >
         <svg
@@ -44,7 +63,7 @@ const SocialSignIn = () => {
             </clipPath>
           </defs>
         </svg>
-      </button>
+      </Button>
 
       {/* <button
         // onClick={() => signIn("github")}
